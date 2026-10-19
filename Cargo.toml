@@ -1,0 +1,17 @@
+[package]
+name = "status"
+version = "2.1.0"
+edition = "2021"
+description = "One-line system monitor for Linux"
+
+[dependencies]
+# Freeze the clock for date formatting. `local` offset support is built in.
+chrono = "0.4.40"
+# statvfs(3) for filesystem space. Only the `fs` feature is used.
+nix = { version = "0.29.0", features = ["fs"] }
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
